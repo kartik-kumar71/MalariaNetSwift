@@ -13,6 +13,7 @@
 		536729A42348FB800067CB5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536729A22348FB800067CB5D /* Main.storyboard */; };
 		536729A62348FB820067CB5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 536729A52348FB820067CB5D /* Assets.xcassets */; };
 		536729A92348FB820067CB5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536729A72348FB820067CB5D /* LaunchScreen.storyboard */; };
+		5383EC29235CD507009EF413 /* malaria.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5383EC28235CD507009EF413 /* malaria.mlmodel */; };
 		5390EEA8234F9634003E14E1 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5390EEA7234F9634003E14E1 /* ResultViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		536729A52348FB820067CB5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		536729A82348FB820067CB5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		536729AA2348FB820067CB5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5383EC28235CD507009EF413 /* malaria.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = malaria.mlmodel; sourceTree = "<group>"; };
 		5390EEA7234F9634003E14E1 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +68,7 @@
 				536729A52348FB820067CB5D /* Assets.xcassets */,
 				536729A72348FB820067CB5D /* LaunchScreen.storyboard */,
 				536729AA2348FB820067CB5D /* Info.plist */,
+				5383EC28235CD507009EF413 /* malaria.mlmodel */,
 			);
 			path = MalariaNetSwift;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 			files = (
 				536729A12348FB800067CB5D /* ViewController.swift in Sources */,
 				5367299D2348FB800067CB5D /* AppDelegate.swift in Sources */,
+				5383EC29235CD507009EF413 /* malaria.mlmodel in Sources */,
 				5367299F2348FB800067CB5D /* SceneDelegate.swift in Sources */,
 				5390EEA8234F9634003E14E1 /* ResultViewController.swift in Sources */,
 			);
