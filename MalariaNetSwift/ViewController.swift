@@ -12,6 +12,7 @@ import Vision
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var cellImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +55,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         let request = VNCoreMLRequest(model: model) { (request, error) in
             let clf = request.results?.first as? VNClassificationObservation
-            print (clf?.identifier)
+            if clf!.identifier == "1" {
+                self.resultLabel.text = "Uninfected"
+            }
+            else if clf!.identifier == "0" {
+                self.resultLabel.text = "Parasitized"
+            }
         }
         
         let handler = VNImageRequestHandler(ciImage: image)
