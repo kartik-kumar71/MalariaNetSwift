@@ -10,10 +10,14 @@ import UIKit
 import CoreML
 import Vision
 
+var flag: String!
+var image1: CIImage!
+
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var cellImage: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -27,11 +31,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
             imagePickerController.sourceType = .camera
+            flag = "cam"
             self.present(imagePickerController, animated: true, completion: nil)
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action:UIAlertAction) in
             imagePickerController.sourceType = .photoLibrary
+            flag = "lib"
             self.present(imagePickerController, animated: true, completion: nil)
         }))
         
@@ -40,7 +46,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.present(actionSheet, animated: true, completion: nil)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        let image = info[.editedImage] as! UIImage
         cellImage.image = image
         guard let convCIImage = CIImage(image: image) else {
             fatalError("Image cannot be converted to CIImage")
@@ -62,8 +68,32 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 self.resultLabel.text = "Parasitized"
             }
         }
+        if flag == "cam" {
+            
+            let currentCIImage = image
+
+            let filter = CIFilter(name: "CIColorMonochrome")
+            filter?.setValue(currentCIImage, forKey: "inputImage")
+
+            // set a gray value for the tint color
+            filter?.setValue(CIColor(red: 0.7, green: 0.7, blue: 0.7), forKey: "inputColor")
+
+            filter?.setValue(1.0, forKey: "inputIntensity")
+            guard let outputImage = filter?.outputImage else { return }
+
+            let context = CIContext()
+
+            if let cgimg = context.createCGImage(outputImage, from: outputImage.extent) {
+                let processedImage = UIImage(cgImage: cgimg)
+                image1 = CIImage(image: processedImage)!
+                print(processedImage.size)
+            }
+        }
+        else {
+            image1 = image
+        }
+        let handler = VNImageRequestHandler(ciImage: image1)
         
-        let handler = VNImageRequestHandler(ciImage: image)
         do {
             try handler.perform([request])
         }
